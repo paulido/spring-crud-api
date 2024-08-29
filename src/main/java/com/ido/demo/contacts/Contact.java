@@ -4,9 +4,13 @@
  */
 package com.ido.demo.contacts;
 
+import com.ido.demo.users.CustomUser;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -18,17 +22,25 @@ import jakarta.persistence.Table;
 //@Table(name="contacts")
 public class Contact {
     
-    private @Id
     
-    @GeneratedValue Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    private Long id;
     private String name;
     private String phone;  
     
-    Contact(){}
+    @ManyToOne
+    @JoinColumn(name = "user_id")  // Foreign key column
+    private CustomUser user;
     
-    Contact(String name, String phone){
+    
+    public Contact(){}
+    
+    public Contact(String name, String phone, CustomUser user){
         this.name = name;
         this.phone = phone;
+        this.user = user;
     }
 
     public Long getId() {
@@ -53,6 +65,14 @@ public class Contact {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+    
+    public CustomUser getUser() {
+        return user;
+    }
+
+    public void setUser(CustomUser user) {
+        this.user = user;
     }
     
     

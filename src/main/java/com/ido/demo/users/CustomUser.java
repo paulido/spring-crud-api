@@ -3,10 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.ido.demo.users;
+import com.ido.demo.contacts.Contact;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Set;
 /**
  *
  * @author HP
@@ -15,15 +19,19 @@ import jakarta.persistence.Table;
 //@Table(name="users")
 public class CustomUser {
     
-   private @Id
-   @GeneratedValue Long id;
-   private Long contact_id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long id;
+   
    private String name;
    private String role;
    
+   @OneToMany(mappedBy = "user") // user est le champ de contact qui contient le user du contact
+    private Set<Contact> contacts;
+   
    CustomUser(){};
    
-   CustomUser(String name, String role){
+   public CustomUser(String name, String role){
      this.name = name;
      this.role = role;
    }
@@ -51,4 +59,12 @@ public class CustomUser {
    public void setRole(String role){
      this.role = role;
    }
+   
+   public Set<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Set<Contact> contacts) {
+        this.contacts = contacts;
+    }
 }
