@@ -34,8 +34,8 @@ public class LoadData {
       customUserRepository.save(user3);
       
       Contact contact1 = new Contact("Inoussa", "inoussa@gmail.com", user1);
-      Contact contact2 = new Contact("Inoussa", "inoussa@gmail.com", user2);
-      Contact contact3 = new Contact("Inoussa", "inoussa@gmail.com", user3);
+      Contact contact2 = new Contact("Fong la gachette", "fong@gmail.com", user2);
+      Contact contact3 = new Contact("Brown", "brown@gmail.com", user3);
       
       contactRepository.save(contact1);
       contactRepository.save(contact2);

@@ -4,6 +4,7 @@
  */
 package com.ido.demo.contacts;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ido.demo.users.CustomUser;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +33,7 @@ public class Contact {
     
     @ManyToOne
     @JoinColumn(name = "user_id")  // Foreign key column
+    @JsonBackReference // Évite la sérialisation récursive du User
     private CustomUser user;
     
     

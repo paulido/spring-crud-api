@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.ido.demo.users;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ido.demo.contacts.Contact;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +28,7 @@ public class CustomUser {
    private String role;
    
    @OneToMany(mappedBy = "user") // user est le champ de contact qui contient le user du contact
+   @JsonManagedReference // Sérialise la collection de contacts
     private Set<Contact> contacts;
    
    CustomUser(){};
