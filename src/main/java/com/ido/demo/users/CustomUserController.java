@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.ido.demo.users;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,7 @@ public class CustomUserController {
   }
   
   @PostMapping("/users")
-  public CustomUser store(@RequestBody CustomUser user){
+  public CustomUser store(@Valid @RequestBody CustomUser user){
     return this.repository.save(user);
   }
   
@@ -44,7 +45,7 @@ public class CustomUserController {
   }
   
   @PutMapping("/users/{id}")
-  public CustomUser update(@RequestBody CustomUser data, @PathVariable Long id){
+  public CustomUser update(@Valid @RequestBody CustomUser data, @PathVariable Long id){
     return this.repository.findById(id).map(user -> {
       user.setName(data.getName());
       user.setRole(data.getRole());

@@ -11,20 +11,24 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import java.util.Set;
 /**
  *
  * @author HP
  */
 @Entity
-//@Table(name="users")
+@Table(name="users")
 public class CustomUser {
     
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   
    private Long id;
    
+   @NotBlank
    private String name;
+   @NotBlank
    private String role;
    
    @OneToMany(mappedBy = "user") // user est le champ de contact qui contient le user du contact

@@ -13,6 +13,7 @@ package com.ido.demo.contacts;
 import com.ido.demo.contacts.Contact;
 import com.ido.demo.contacts.ContactNotFoundException;
 import com.ido.demo.contacts.ContactRepository;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,7 +47,7 @@ public class ContactController {
   }
   
   @PostMapping("/contacts")
-  public Contact store(@RequestBody Contact contact){
+  public Contact store(@Valid @RequestBody Contact contact){
     return this.repository.save(contact);
   }
   
@@ -56,7 +57,7 @@ public class ContactController {
   }
   
   @PutMapping("/contacts/{id}")
-  public Contact update(@RequestBody Contact data, @PathVariable Long id){
+  public Contact update(@Valid @RequestBody Contact data, @PathVariable Long id){
     return this.repository.findById(id).map(contact -> {
       contact.setName(data.getName());
       contact.setPhone(data.getPhone());

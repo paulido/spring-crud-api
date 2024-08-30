@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  *
@@ -20,15 +21,16 @@ import jakarta.persistence.Table;
  */
 
 @Entity
-//@Table(name="contacts")
+@Table(name="contacts")
 public class Contact {
-    
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     private Long id;
+    @NotBlank
     private String name;
+    @NotBlank
     private String phone;  
     
     @ManyToOne
