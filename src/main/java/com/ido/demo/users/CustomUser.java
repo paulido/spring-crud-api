@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.CascadeType;
 import java.util.Set;
 /**
  *
@@ -30,8 +31,7 @@ public class CustomUser {
    private String name;
    @NotBlank
    private String role;
-   
-   @OneToMany(mappedBy = "user") // user est le champ de contact qui contient le user du contact
+   @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true) // user est le champ de contact qui contient le user du contact
    @JsonManagedReference // Sérialise la collection de contacts
     private Set<Contact> contacts;
    
