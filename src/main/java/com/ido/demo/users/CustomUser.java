@@ -27,7 +27,7 @@ public class CustomUser {
    
    private Long id;
    
-   @NotBlank
+   @NotBlank(message = "Le nom ne peut pas être vide")
    private String name;
    @NotBlank
    private String role;
